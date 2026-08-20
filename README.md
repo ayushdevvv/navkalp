@@ -58,7 +58,19 @@ The dashboard therefore does not collapse into a blank `0 incidents` state just 
 
 ## Setup
 
+### One-command development
+
+```bash
+npm install
+npm run install:all
+npm run dev
+```
+
+This starts the Express/Socket.IO API and Vite frontend together. If you prefer separate terminals, use the Backend and Frontend commands below.
+
 ### Backend
+
+Node.js 20+ is recommended. MongoDB may be local or MongoDB Atlas. FloodGuard still starts in populated demo-memory mode if MongoDB is temporarily unavailable.
 
 ```bash
 cd backend
@@ -108,7 +120,7 @@ Password for all: `floodguard123`
 - `responder@floodguard.gov` — FIELD_RESPONDER
 - `citizen@floodguard.gov` — CITIZEN
 
-The seeded operational default is Assam / Dibrugarh.
+The seeded operational default is Uttar Pradesh / Lucknow. Assam / Dibrugarh and additional configured districts remain available.
 
 ## Main demo flow
 
@@ -162,7 +174,9 @@ The previous route-collection lookup bug based on `req.baseUrl` was also removed
 
 The backend now has a populated operational dataset independent of MongoDB availability.
 
-### Backend demo dataset
+### Backend
+
+Node.js 20+ is recommended. MongoDB may be local or MongoDB Atlas. FloodGuard still starts in populated demo-memory mode if MongoDB is temporarily unavailable. demo dataset
 
 The server-side memory dataset contains, for Dibrugarh:
 
@@ -203,3 +217,24 @@ The backend also attempts low-frequency public refreshes for:
 Public results are cached in memory and, where MongoDB is healthy, persisted through the existing ingestion/cache architecture.
 
 A failed public fetch never replaces usable operational data with an empty response.
+
+
+## Premium UI / multilingual layer
+
+The frontend uses a light government-command-centre visual system with responsive desktop/tablet/mobile layouts, Leaflet operational mapping, Recharts analytics, Socket.IO live updates, notification drawer, accessible controls and a real language selector.
+
+Supported language codes include English, Hindi, Bengali, Telugu, Marathi, Tamil, Gujarati, Urdu, Kannada, Odia, Malayalam, Punjabi, Assamese, Maithili, Sanskrit, Kashmiri, Nepali, Konkani, Sindhi, Dogri, Manipuri, Bodo and Santali. English/Hindi have the most complete interface dictionary; additional languages have structured core navigation translations and can be expanded without changing components.
+
+## AI endpoints
+
+- `POST /api/ai/extract` — structured incident extraction with deterministic fallback.
+- `POST /api/ai/copilot` — database-grounded command copilot with fallback.
+- `POST /api/ai/translate` — emergency/public message translation; falls back to the original text if Groq is unavailable.
+- `POST /api/ai/advisory` — public flood-safety advisory generation.
+- `POST /api/ai/sitrep` — database-grounded SITREP generation with deterministic fallback.
+
+Groq is server-side only. `GROQ_API_KEY` is never bundled into the frontend.
+
+## Trust / demo posture
+
+FloodGuard intentionally separates `OFFICIAL`, `VERIFIED`, `COMMUNITY`, `CACHED`, `DEMO`, `SIMULATION` and `OPERATOR` records. Seeded records are not labelled as government alerts. Public feeds are cached and can fail without making the command centre unusable.

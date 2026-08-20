@@ -1,0 +1,11 @@
+const r=require('express').Router(),c=require('../controllers/coreController'),{protect,permit}=require('../middleware/auth');
+r.use(protect);
+r.get('/districts',c.list);r.get('/dashboard',c.dashboard);r.get('/weather',c.getWeather);r.get('/demo/dashboard',c.demoDashboard);
+const readOnly=['districts','incidents','resources','shelters','alerts','roads','evacuations','notifications','reports','simulations','gauges','infrastructure','floodzones','emergencycontacts'];readOnly.forEach(k=>r.get('/'+k,c.list));
+['incidents','resources','shelters','alerts','roads','evacuations','notifications','simulations'].forEach(k=>{r.post('/'+k,permit('ADMIN','DISTRICT_OFFICER'),c.create);r.patch('/'+k+'/:id',permit('ADMIN','DISTRICT_OFFICER','FIELD_RESPONDER'),c.update)});
+r.patch('/reports/:id',permit('ADMIN','DISTRICT_OFFICER'),c.update);
+r.post('/incidents/:id/dispatch',permit('ADMIN','DISTRICT_OFFICER'),c.dispatch);
+r.post('/citizen-reports',permit('CITIZEN'),c.createCitizenReport);
+r.post('/evacuations/activate',permit('ADMIN','DISTRICT_OFFICER'),c.evacuate);
+r.post('/simulations/run',permit('ADMIN','DISTRICT_OFFICER'),c.simulation);
+module.exports=r;

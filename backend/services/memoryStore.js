@@ -16,6 +16,6 @@ function initDistrict(d){const c=d.center,x={district:{...d},incidents:[],resour
  x.alerts=[{_id:id(),title:`${d.name} flood situation watch`,description:'Demo operational advisory: monitor river levels, low-lying areas, road access and relief capacity.',severity:'WARNING',district:d.name,state:d.state,issuedAt:new Date(Date.now()-45*60000),expiresAt:new Date(Date.now()+8*3600000),sourceType:'DEMO',source:'FloodGuard Seed',officialUrl:'https://sachet.ndma.gov.in/'},{_id:id(),title:'Public flood preparedness notice',description:'Fallback operational notice. Not an official government warning.',severity:'WATCH',district:d.name,state:d.state,issuedAt:new Date(),sourceType:'DEMO',source:'FloodGuard Seed'}];
  return x}
 function ensure(){if(ready)return store;for(const d of DISTRICTS)store[`${d.state}::${d.name}`]=initDistrict(d);ready=true;return store}
-function get(state,district){ensure();return store[`${state}::${district}`]||store['Uttar Pradesh::Lucknow']}
+function get(state,district){ensure();return store[`${state}::${district}`]||store['Assam::Dibrugarh']}
 function addReport(state,district,report,incident){const d=get(state,district);d.reports.unshift({...report,_id:id(),incident});d.incidents.unshift(incident);return {report:d.reports[0],incident}}
 module.exports={ensure,get,addReport};

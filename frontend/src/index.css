@@ -2062,3 +2062,70 @@ button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-vis
 @media(max-width:900px){
  .india-map-toolbar{align-items:flex-start;flex-direction:column}.india-map-location{width:100%}.india-map-location select{flex:1}.shelter-directory-toolbar{align-items:flex-start;flex-direction:column}.shelter-search{width:100%}.emergency-directory-grid{grid-template-columns:1fr}.safety-accordion-body{grid-template-columns:1fr}.directory-shelter-top{align-items:flex-start;flex-direction:column}.directory-directions,.directory-disabled{width:100%}
 }
+
+
+/* =========================================================
+   FINAL POLISH — national identity, mobile navbar, shelter readability
+   ========================================================= */
+.india-flag{
+  width:34px;height:24px;display:inline-flex;flex-direction:column;overflow:hidden;
+  border:1px solid #d4dce4;border-radius:4px;flex:none;background:#fff;
+  box-shadow:0 2px 6px rgba(16,35,63,.08)
+}
+.india-flag .flag-band{position:relative;display:block;flex:1;min-height:0}
+.india-flag .saffron{background:#ff9933}
+.india-flag .white{background:#fff;display:grid;place-items:center}
+.india-flag .green{background:#138808}
+.india-flag svg{width:13px;height:13px;display:block}
+.india-flag svg circle:first-child{fill:none;stroke:#1f4f91;stroke-width:1.05}
+.india-flag svg line{stroke:#1f4f91;stroke-width:.65;stroke-linecap:round}
+.india-flag svg circle:nth-child(2){fill:#1f4f91}
+
+.language-short{
+  position:relative;display:inline-flex;align-items:center;gap:6px;height:40px;min-width:48px;
+  padding:0 10px;border:1px solid var(--rs-line-strong,#cbd7e5);border-radius:10px;
+  background:#fff;color:#172b3a;font-size:11px;font-weight:800;letter-spacing:.04em;
+  cursor:pointer;box-shadow:0 2px 7px rgba(16,35,63,.04);overflow:hidden
+}
+.language-short span{position:relative;z-index:2}
+.language-short b{font-size:14px;line-height:1;position:relative;z-index:2;font-weight:700;color:#617487}
+.language-short select{
+  position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;border:0!important;
+  padding:0!important;background:transparent!important
+}
+
+/* Citizen mobile header: keep the language control compact and remove the old status label. */
+.citizen-top .top-actions{margin-left:auto}
+@media(max-width:768px){
+  .citizen-top .admin-login-nav,.citizen-top .top-actions>b{display:none}
+  .citizen-top .top-actions{gap:7px}
+  .citizen-top .language-short{height:34px;min-width:46px;padding:0 8px}
+  .citizen-top .brand{min-width:0}
+  .citizen-top .brand>div:last-child{min-width:0}
+  .citizen-top .brand-name{font-size:14px!important}
+  .citizen-top .india-flag{width:31px;height:22px}
+}
+
+/* Shelter Network — high-contrast occupancy numbers. */
+.directory-occupancy b,
+.directory-occupancy strong{color:#10233f!important;font-weight:800!important}
+.directory-occupancy strong{font-size:12px!important}
+.capacity strong{color:#10233f!important}
+.capacity span{color:#53657d!important}
+.shelter .capacity strong{font-weight:850!important}
+
+/* Admin-wide card rhythm: consistent padding, type and spacing across command pages. */
+.app-shell .content{padding-top:30px;padding-bottom:34px}
+.app-shell .content>.page-head{min-height:54px}
+.app-shell .content .card{min-width:0}
+.app-shell .content .card-head{min-height:58px}
+.app-shell .content .card-head b{line-height:1.25}
+.app-shell .content .card-head span{line-height:1.4}
+.app-shell .content .feed-card{padding:18px 20px}
+.app-shell .content .resource-grid,
+.app-shell .content .shelter-grid,
+.app-shell .content .analytics-grid{align-items:stretch}
+
+/* Emergency is represented once in the citizen navigation; hide legacy contacts route if reached directly. */
+.citizen-content .contacts-premium-grid,
+.citizen-content .contact-grid.premium{display:none}

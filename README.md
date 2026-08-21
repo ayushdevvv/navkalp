@@ -1,6 +1,6 @@
-# FLOODGUARD — District Flood Response & Emergency Coordination Platform
+# RAHATSETU — National Flood Response & Emergency Coordination Platform
 
-RahatSetu is an existing MERN district emergency-operations application upgraded into a data-rich Assam flood-response demo while preserving its existing navigation, auth, Leaflet, MongoDB, Socket.IO and Groq architecture.
+RahatSetu is a national MERN flood-response platform with separate public citizen and administration experiences, state/district-aware operations, Leaflet mapping, MongoDB, Socket.IO and Groq-assisted command intelligence.
 
 ## Primary demo
 
@@ -120,7 +120,15 @@ Password for all: `floodguard123`
 - `responder@floodguard.gov` — FIELD_RESPONDER
 - `citizen@floodguard.gov` — CITIZEN
 
-The seeded operational default is Uttar Pradesh / Lucknow. Assam / Dibrugarh and additional configured districts remain available.
+The public entry defaults to **Assam → Dibrugarh**. State/district selectors drive the dashboard data, map centre, river context, shelters, roads and weather fallback.
+
+## Entry / access flow
+
+- `/` opens directly into the public Citizen Safety workspace — there is no separate landing page.
+- The Citizen navbar contains **Administration Login**.
+- Administration login uses the seeded demo administrator: `admin@floodguard.gov` / `floodguard123`.
+- After login, the administrator enters the National Command Centre.
+- Logging out returns to the public Citizen workspace.
 
 ## Main demo flow
 

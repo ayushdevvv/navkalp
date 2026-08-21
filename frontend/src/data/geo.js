@@ -1,5 +1,5 @@
 // National state → district map with approximate district-centre coordinates.
-// Assam is the default state/district for the FloodGuard demo.
+// Assam is the default state/district for the RahatSetu demo.
 export const STATE_DISTRICTS = {
     'Assam': {
         order: 1,

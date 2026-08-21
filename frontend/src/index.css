@@ -1612,3 +1612,453 @@ body{overflow-x:hidden}
 }
 .citizen-admin-side{margin:8px 5px!important;border:1px solid #d7e2ec!important;background:#f8fafc!important;color:#39566f!important;border-radius:11px!important;justify-content:flex-start!important}
 .citizen-admin-side svg{color:#1769d1!important}
+
+/* =========================================================
+   RAHATSETU V7 — PREMIUM CITIZEN REDESIGN (India map, icons,
+   emergency contacts, evacuation routes, rescue ETA, navbar)
+   ========================================================= */
+:root{
+  --v7-navy:#0c1f3d;
+  --v7-navy-2:#132b52;
+  --v7-navy-line:#1f3a63;
+  --v7-red:#d0273b;
+  --v7-red-soft:#fff0f2;
+  --v7-amber:#c9820a;
+  --v7-amber-soft:#fff6e3;
+  --v7-green:#128253;
+  --v7-green-soft:#e9f9f1;
+  --v7-blue:#1769d1;
+  --v7-blue-soft:#eaf3ff;
+}
+
+/* ---- India overview map ---- */
+.india-card .card-head{display:flex!important;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.map-back-btn{display:flex;align-items:center;gap:6px;border:1px solid #d7e2ec;background:#fff;color:#1769d1;font-size:10px;font-weight:700;padding:7px 12px;border-radius:20px;cursor:pointer;white-space:nowrap}
+.map-back-btn:hover{background:#eaf3ff}
+.india-square{aspect-ratio:1/1;max-width:560px;max-height:560px;margin:0 auto;width:100%;height:auto!important;display:flex;align-items:center;justify-content:center;background:#eaf1f6!important;border-radius:12px;overflow:hidden}
+.citizen-home-grid .citizen-map.india-card{display:flex;flex-direction:column}
+.india-map-svg-wrap{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px;position:relative}
+.india-map-svg{width:100%;height:100%;max-width:480px}
+.india-map-bg{fill:#dfeaf3;stroke:#c3d6e6;stroke-width:.4}
+.india-marker{cursor:pointer}
+.india-marker-dot{fill:#5b8fc9;stroke:#fff;stroke-width:.35;transition:r .15s ease}
+.india-marker.tone-critical .india-marker-dot{fill:var(--v7-red)}
+.india-marker.tone-high .india-marker-dot{fill:var(--v7-amber)}
+.india-marker.tone-moderate .india-marker-dot{fill:#e8c400}
+.india-marker.tone-calm .india-marker-dot{fill:#16a66a}
+.india-marker.active .india-marker-dot{fill:#0c1f3d;stroke:#fff;stroke-width:.6}
+.india-marker-pulse{fill:none;stroke:var(--v7-red);stroke-width:.4;opacity:.55;animation:indiaPulse 1.8s ease-out infinite}
+.india-marker.tone-high .india-marker-pulse{stroke:var(--v7-amber)}
+@keyframes indiaPulse{0%{r:2;opacity:.6}100%{r:6.5;opacity:0}}
+.india-marker:hover .india-marker-dot{r:3.4!important}
+.india-map-legend{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;padding:8px 4px 2px;font-size:9px;color:#52677e;font-weight:650}
+.india-map-legend span{display:flex;align-items:center;gap:5px}
+.india-map-legend .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.india-map-legend .dot.critical{background:var(--v7-red)}
+.india-map-legend .dot.high{background:var(--v7-amber)}
+.india-map-legend .dot.moderate{background:#e8c400}
+.india-map-legend .dot.calm{background:#16a66a}
+.warn-glyph{color:var(--v7-amber);vertical-align:-2px;margin-right:2px}
+
+/* ---- Fast actions — navy premium card ---- */
+.fast-actions-card{background:var(--v7-navy)!important;border:1px solid var(--v7-navy-line)!important}
+.fast-actions-card .card-head{border-bottom:1px solid var(--v7-navy-line)!important;background:transparent!important}
+.fast-actions-card .card-head b{color:#eaf1fb!important}
+.fast-actions-card .citizen-actions{background:transparent!important}
+.fast-actions-card .citizen-actions button{background:var(--v7-navy-2)!important;border:1px solid var(--v7-navy-line)!important;color:#dbe8fb!important;font-weight:700!important}
+.fast-actions-card .citizen-actions button svg{color:#7fb3f5}
+.fast-actions-card .citizen-actions button:hover{background:#1c3a68!important;transform:translateY(-1px)}
+
+/* ---- Emergency contacts — premium layout ---- */
+.contacts-premium-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:14px;margin-bottom:14px}
+.danger-hero-card{background:var(--v7-navy)!important;border:1px solid var(--v7-navy-line)!important;padding:22px;display:flex;flex-direction:column;gap:12px;justify-content:center}
+.danger-hero-top{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.08em;color:#ff8a97}
+.danger-dot{width:8px;height:8px;border-radius:50%;background:var(--v7-red);display:inline-block;box-shadow:0 0 0 4px rgba(208,39,59,.25)}
+.danger-hero-card p{color:#c3d3ea;font-size:12px;line-height:1.6;margin:0}
+.danger-call-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--v7-red);color:#fff;text-decoration:none;font-weight:800;font-size:13px;padding:13px;border-radius:11px;box-shadow:0 8px 20px rgba(208,39,59,.28)}
+.danger-call-btn:hover{background:#b91f31}
+.quick-contacts-card .quick-contacts-list{padding:4px 0}
+.quick-contact-row{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid #edf1f5;font-size:12px}
+.quick-contact-row:last-child{border-bottom:0}
+.quick-contact-row span{color:#233f59;font-weight:650}
+.quick-contact-row a{color:var(--v7-blue);font-weight:800;text-decoration:none;font-size:13px}
+.contact-grid.premium{grid-template-columns:repeat(3,1fr)}
+.contact-card.premium{grid-template-columns:40px 1fr auto;gap:10px;padding:15px!important}
+.contact-card.premium .feed-icon{width:38px;height:38px;border-radius:10px;background:var(--v7-blue-soft);color:var(--v7-blue);display:flex;align-items:center;justify-content:center;flex:none}
+.contact-call-btn{display:flex;align-items:center;gap:5px;background:var(--v7-red);color:#fff!important;font-size:9px!important;font-weight:800;padding:8px 10px;border-radius:8px;text-decoration:none}
+.contact-call-btn:hover{background:#b91f31}
+
+/* ---- Evacuation routes ---- */
+.routes-card,.evac-checklist-card{margin-top:14px}
+.route-list{display:grid;gap:12px;padding:15px}
+.route-card{border:1px solid #e4ebf2;border-radius:13px;padding:14px 16px;background:#fbfdff}
+.route-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.route-top>div:first-child{display:flex;align-items:center;gap:9px}
+.route-top b{font-size:12.5px;color:#10233f}
+.route-meta{font-size:10.5px;color:#7b8ea6;font-weight:700;white-space:nowrap}
+.route-badge{font-size:8.5px;font-weight:800;letter-spacing:.06em;padding:3px 9px;border-radius:20px}
+.route-badge.open{background:var(--v7-green-soft);color:var(--v7-green)}
+.route-badge.caution{background:var(--v7-amber-soft);color:var(--v7-amber)}
+.route-badge.closed{background:var(--v7-red-soft);color:var(--v7-red)}
+.route-path{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin:12px 0}
+.route-path small{display:block;font-size:8px;letter-spacing:.1em;color:#93a3b6;font-weight:800}
+.route-path span{font-size:11.5px;color:#334a63;font-weight:650}
+.route-path .route-dest{color:#1769d1}
+.route-arrow{color:#9fb3c8}
+.route-directions-btn{width:100%;justify-content:center;display:flex;align-items:center;gap:7px;font-size:11px!important;padding:11px!important;border-radius:9px!important}
+.evac-checklist-card .checklist{padding:15px;display:grid;gap:10px}
+.evac-checklist-card .checklist p{display:flex;gap:9px;align-items:flex-start;font-size:11.5px;color:#3e5870;line-height:1.5;margin:0}
+.evac-checklist-card .checklist svg{color:var(--v7-amber);flex:none;margin-top:1px}
+.evac-checklist-card .card-head{background:var(--v7-amber-soft)!important}
+
+/* ---- Rescue ETA ---- */
+.rescue-row{grid-template-columns:42px 1fr auto!important}
+.rescue-eta{text-align:right}
+.rescue-eta strong{display:block;font-size:14px;color:#10233f}
+.rescue-eta span{display:block;font-size:9.5px;color:var(--v7-green);font-weight:800;margin-top:2px}
+
+/* ---- Shelter premium ---- */
+.shelter.premium .shelter-title-row{display:flex;align-items:center;gap:8px}
+.shelter-glyph{color:var(--v7-blue)}
+.shelter-sub-meta{padding:0 17px;font-size:10px;color:#7b8ea6;display:flex;gap:6px;align-items:center}
+.shelter.premium .capacity{padding:10px 17px 4px}
+.shelter.premium .bar{margin:0 17px;height:7px;border-radius:20px;background:#eef3f8;overflow:hidden}
+.shelter.premium .bar i{display:block;height:100%;border-radius:20px}
+.shelter.premium .bar i.ok{background:var(--v7-green)}
+.shelter.premium .bar i.high{background:var(--v7-amber)}
+.shelter.premium .bar i.full{background:var(--v7-red)}
+.shelter.premium .tags{padding:12px 17px}
+.shelter.premium .tags span{opacity:.5}
+.shelter.premium .tags span.has{opacity:1;border-color:#c9e3d6!important;background:var(--v7-green-soft)!important;color:var(--v7-green)!important;font-weight:700}
+.shelter.premium.full{opacity:.85}
+.disabled-btn{width:calc(100% - 34px);margin:0 17px 17px;background:#f1f4f8!important;color:#96a5b7!important;border:1px solid #e4ebf2!important;border-radius:9px;padding:12px;font-weight:700;font-size:11px;cursor:not-allowed}
+
+/* ---- Safety premium ---- */
+.safety-grid.premium{grid-template-columns:repeat(4,1fr)}
+.safety-head-title{display:flex;align-items:center;gap:9px}
+.safety-icon-badge{width:26px;height:26px;border-radius:8px;background:var(--v7-blue-soft);color:var(--v7-blue);display:flex;align-items:center;justify-content:center;flex:none}
+.safety-icon-badge.amber{background:var(--v7-amber-soft);color:var(--v7-amber)}
+.do-label{color:var(--v7-green)!important;display:flex;align-items:center;gap:5px}
+.dont-label{color:var(--v7-red)!important;display:flex;align-items:center;gap:5px}
+.kit-card .kit-list{padding:16px;display:grid;gap:9px}
+.kit-card .kit-list p{display:flex;gap:8px;font-size:11px;color:#4f6678;line-height:1.5;margin:0}
+.kit-card .kit-list svg{color:var(--v7-green);flex:none;margin-top:1px}
+
+/* ---- Mobile bottom nav ---- */
+.citizen-bottom-nav{display:none}
+@media(max-width:900px){
+  .citizen-bottom-nav{
+    display:flex!important;position:fixed;left:0;right:0;bottom:0;z-index:1400;
+    background:rgba(255,255,255,.98);border-top:1px solid #e2e9f0;
+    box-shadow:0 -6px 22px rgba(16,35,63,.09);backdrop-filter:blur(14px);
+    padding:8px 6px calc(8px + env(safe-area-inset-bottom));justify-content:space-around;align-items:center;
+  }
+  .citizen-bottom-nav button{background:transparent;border:0;display:flex;flex-direction:column;align-items:center;gap:3px;color:#8091a5;font-size:8.5px;font-weight:700;padding:4px 6px;flex:1}
+  .citizen-bottom-nav button.active{color:var(--v7-blue)}
+  .citizen-bottom-nav button.bottom-nav-sos{color:#fff;background:var(--v7-red);border-radius:16px;padding:9px 14px;margin-top:-22px;box-shadow:0 8px 18px rgba(208,39,59,.4);flex:0 0 auto}
+  .citizen-content,.citizen-main{padding-bottom:88px!important}
+  .contacts-premium-grid,.contact-grid.premium,.safety-grid.premium{grid-template-columns:1fr!important}
+  .route-path{grid-template-columns:1fr auto 1fr}
+}
+@media(max-width:600px){
+  .india-square{max-width:100%}
+  .india-map-legend{font-size:8px;gap:8px}
+}
+
+/* ---- Premium navbar polish (phone + laptop) ---- */
+.citizen-top{backdrop-filter:saturate(1.4) blur(16px)!important}
+.brand .tricolor{box-shadow:0 0 0 1px rgba(16,35,63,.06)}
+.citizen-menu{background:#f1f6fb!important;border-radius:10px!important;color:#233f59!important;border:1px solid #e2e9f0!important}
+@media(max-width:900px){
+  .citizen-top{padding:0 14px!important;gap:10px!important}
+  .brand-name{font-size:14px!important;letter-spacing:.06em!important}
+  .brand-sub{font-size:7.5px!important}
+  .top-actions{gap:8px!important}
+  .top-actions b{display:none}
+  .top-actions .admin-login-nav{display:none!important}
+  .language-select{padding:0 6px!important}
+  .language-select select{font-size:0!important;width:20px}
+}
+
+/* =========================================================
+   RAHATSETU V9 — INDIA HERO MAP + HACKATHON-LEVEL GLOBAL POLISH
+   ========================================================= */
+
+/* ---- India hero (always default, above everything) ---- */
+.india-hero-card{margin-bottom:16px;background:linear-gradient(180deg,#0e2444 0%,#0c1f3d 100%)!important;border:1px solid #1f3a63!important;overflow:hidden}
+.india-hero-card .card-head{background:transparent!important;border-bottom:1px solid #1f3a63!important;display:flex!important;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.india-hero-card .card-head b{color:#eef4fc!important;font-size:11px!important}
+.india-hero-card .card-head span{color:#9fb3ce!important}
+.india-hero-current{display:flex;align-items:center;gap:6px;background:#132b52;border:1px solid #2a4a78;color:#9fd0ff;font-size:9.5px;font-weight:800;padding:6px 12px;border-radius:20px;white-space:nowrap}
+.india-hero-body{padding:18px;display:flex;justify-content:center}
+.india-hero-body .india-square{background:#0f2745;border-radius:14px}
+.india-hero-body .india-map-bg{fill:#16335c;stroke:#274d81}
+.india-hero-body .india-map-legend{color:#9fb3ce}
+.india-hero-body .india-marker-dot{stroke:#0c1f3d}
+.india-hero-body .india-marker.active .india-marker-dot{fill:#ffffff;stroke:#1769d1;stroke-width:.7}
+
+/* ---- Global typography + spacing scale (hackathon polish) ---- */
+.card-head b{font-weight:800!important}
+h1,h2,h3{letter-spacing:-.02em}
+.card,.stat,.incident-card,.resource,.shelter,.contact-card,.feed-card,.chart-card,.road-card,.route-card{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.card:hover,.incident-card:hover,.resource:hover,.shelter:hover,.contact-card:hover,.feed-card:hover,.chart-card:hover,.road-card:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(16,35,63,.11)!important}
+button,.primary,.ghost,select,input,textarea{transition:background .15s ease,color .15s ease,border-color .15s ease,box-shadow .15s ease,transform .1s ease}
+.primary{background:var(--v7-blue)!important;color:#fff!important;border:0!important;font-weight:800!important;letter-spacing:.02em;box-shadow:0 8px 18px rgba(23,105,209,.25)!important}
+.primary:hover{background:#0f56b0!important;transform:translateY(-1px)}
+.primary:active{transform:translateY(0)}
+.ghost{background:#fff!important;border:1px solid #d7e2ec!important;color:#39566f!important;font-weight:700!important}
+.ghost:hover{background:#f1f6fb!important;border-color:#1769d1!important;color:#1769d1!important}
+.ghost.small{padding:6px 11px!important;font-size:9.5px!important;border-radius:20px!important}
+
+/* scrollbars */
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#c7d4e2;border-radius:20px;border:2px solid #f4f7fb}
+::-webkit-scrollbar-thumb:hover{background:#a9bccf}
+
+/* focus rings */
+button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid #1769d1;outline-offset:2px;border-radius:6px}
+
+/* ---- Incidents / dispatch premium ---- */
+.incident-grid{gap:16px!important}
+.incident-card{border-left:4px solid #dfe7ef!important}
+.incident-card:has(.severity.critical){border-left-color:var(--v7-red)!important}
+.incident-card:has(.severity.high){border-left-color:var(--v7-amber)!important}
+.incident-card:has(.severity.moderate){border-left-color:#1769d1!important}
+.incident-top{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.incident-meta{gap:12px!important}
+.incident-meta span{display:flex;align-items:center;gap:5px;font-size:10px;color:#71849b}
+.score{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px;padding-top:12px;border-top:1px dashed #e5ebf1}
+.toolbar-input{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #d7e2ec;border-radius:20px;padding:9px 14px}
+.toolbar-input input{border:0;outline:0;font-size:11.5px;background:transparent;width:190px}
+.toolbar-input svg{color:#8091a5}
+
+/* ---- Resources ---- */
+.resource-grid{gap:14px!important}
+.resource{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:12px;position:relative;padding-bottom:34px!important}
+.resource small{position:absolute;left:73px;right:16px;bottom:14px}
+
+/* ---- Roads ---- */
+.road-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.road-card{padding:16px!important;display:flex;flex-direction:column;gap:10px}
+.road-card>div:first-child{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.road-card b{font-size:12px;color:#10233f}
+@media(max-width:1100px){.road-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.road-grid{grid-template-columns:1fr}}
+
+/* ---- Tracking (admin) ---- */
+.tracking-grid{gap:16px!important}
+.tracking-row{border-radius:10px}
+.tracking-row:hover{background:#f7fafd}
+.timeline-list{padding:6px 0}
+.timeline-item{display:grid;grid-template-columns:14px 1fr;gap:12px;padding:12px 18px;border-bottom:1px solid #edf1f5}
+.timeline-item:last-child{border-bottom:0}
+.timeline-dot{width:9px;height:9px;border-radius:50%;background:#1769d1;margin-top:5px;box-shadow:0 0 0 4px #eaf3ff}
+.timeline-item b{font-size:11.5px;color:#233f59}
+.timeline-item span{font-size:10.5px;color:#71849b}
+
+/* ---- Shelters (admin) premium ---- */
+.shelter-grid{gap:14px!important}
+
+/* ---- Evacuation (admin) ---- */
+.form-card label{font-size:10.5px;font-weight:700;color:#39566f;display:block;margin-bottom:12px}
+.form-card select,.form-card input{width:100%;margin-top:6px;padding:10px 12px;border-radius:9px;border:1px solid #d7e2ec;font-size:12px}
+
+/* ---- Alerts / feed ---- */
+.feed-card{border-left:4px solid #1769d1!important}
+.official-link{display:inline-flex;align-items:center;gap:4px;color:#1769d1;font-size:10.5px;font-weight:700;margin-top:8px;text-decoration:none}
+
+/* ---- Weather ---- */
+.forecast-grid div{padding:12px 10px!important}
+.forecast-grid b{font-size:10px;color:#52677e}
+.forecast-grid strong{display:block;font-size:16px;color:#10233f;margin:6px 0 3px}
+
+/* ---- Simulation ---- */
+.simulation{padding:20px!important}
+.simulation-banner{display:flex;align-items:center;gap:10px;background:var(--v7-amber-soft);color:#8a5a00;border-radius:11px;padding:12px 16px;font-size:11px;margin-bottom:16px}
+.scenario-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.scenario-grid button{border:1px solid #d7e2ec;background:#fff;border-radius:12px;padding:16px;display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left}
+.scenario-grid button.selected{border-color:#1769d1;background:var(--v7-blue-soft)}
+.scenario-grid button b{font-size:11.5px;color:#10233f}
+.scenario-grid button span{font-size:9.5px;color:#7b8ea6}
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.before-after>div{border:1px solid #e4ebf2;border-radius:12px;padding:16px;background:#fafcfe}
+.before-after>div.after{border-color:#c9e3d6;background:var(--v7-green-soft)}
+.sim-metrics{display:grid;gap:8px;margin-top:10px}
+.sim-metrics span{display:flex;justify-content:space-between;font-size:10.5px;color:#52677e}
+.sim-metrics strong{color:#10233f}
+
+/* ---- Analytics chart cards ---- */
+.chart-grid{gap:16px!important}
+.chart-card{padding-bottom:8px!important}
+
+/* ---- Copilot ---- */
+.copilot-shell,.copilot-panel{border-radius:14px!important}
+
+/* ---- Reports ---- */
+.my-reports{padding:6px 0}
+
+/* ---- Modal premium ---- */
+.modal-backdrop{background:rgba(10,20,35,.55)!important;backdrop-filter:blur(3px)}
+.modal{border-radius:16px!important;box-shadow:0 30px 70px rgba(10,20,35,.35)!important;border:1px solid #e4ebf2!important}
+.modal-head{border-bottom:1px solid #edf1f5!important;padding:16px 18px!important}
+.modal-head b{font-size:12.5px;color:#10233f}
+
+/* ---- Login page micro-polish already premium; ensure consistent radius ---- */
+.admin-login-card{border-radius:20px!important}
+
+/* ---- Field ops premium touch ---- */
+.field-incident{border-radius:12px}
+.field-tools button svg{color:#7fb3f5}
+
+/* ---- Data banner ---- */
+.data-banner{display:flex;align-items:center;gap:8px;background:var(--v7-amber-soft);color:#8a5a00;border:1px solid #f2dfab;border-radius:11px;padding:11px 15px;font-size:10.5px;margin-top:10px}
+
+/* ---- Responsive: India hero on small screens ---- */
+@media(max-width:900px){
+  .india-hero-body{padding:12px}
+  .india-hero-card .card-head{flex-direction:column;align-items:flex-start!important}
+  .scenario-grid,.before-after{grid-template-columns:1fr!important}
+}
+
+/* ---- RahatSetu v10 interaction polish ---- */
+.citizen-shelter-premium{
+  border:1px solid #dfe7f0!important;
+  border-radius:16px!important;
+  background:linear-gradient(180deg,#ffffff 0%,#f8fbff 100%)!important;
+  box-shadow:0 12px 34px rgba(15,35,60,.08)!important;
+  overflow:hidden;
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+}
+.citizen-shelter-premium:hover{
+  transform:translateY(-2px);
+  box-shadow:0 18px 42px rgba(15,35,60,.12)!important;
+  border-color:#cbd8e7!important;
+}
+.citizen-shelter-premium .card-head{padding:16px 17px 12px!important}
+.citizen-shelter-premium .shelter-title-row{align-items:center}
+.citizen-shelter-premium .shelter-title-row>div{display:flex;flex-direction:column;gap:3px}
+.citizen-shelter-premium .shelter-title-row b{font-size:12px!important;color:#15253a!important}
+.citizen-shelter-premium .shelter-title-row small{font-size:9px;color:#8090a3}
+.shelter-icon-wrap{
+  width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+  background:#eef5ff;color:#2563a9;border:1px solid #d8e7fb;flex:none;
+}
+.shelter-info-line{
+  display:flex;gap:12px;flex-wrap:wrap;padding:0 17px 8px;color:#718299;font-size:9px;
+}
+.shelter-info-line span{display:flex;align-items:center;gap:5px}
+.citizen-shelter-premium .capacity{padding:9px 17px 5px!important}
+.citizen-shelter-premium .capacity strong{font-size:18px!important;color:#17283d}
+.citizen-shelter-premium .capacity span{font-size:9px!important;color:#718299}
+.citizen-shelter-premium .bar{margin:0 17px!important;background:#e9eef5!important}
+.citizen-shelter-premium .tags{padding:12px 17px!important;display:flex;flex-wrap:wrap;gap:6px}
+.citizen-shelter-premium .tags span{
+  padding:6px 8px!important;border-radius:7px!important;background:#f3f6fa!important;
+  border:1px solid #e5ebf2!important;color:#8b98a8!important;font-size:8px!important;
+}
+.citizen-shelter-premium .tags span.has{background:#edf8f2!important;color:#278454!important;border-color:#cfe9db!important}
+.shelter-card-actions{display:grid;grid-template-columns:.7fr 1.3fr;gap:8px;padding:0 17px 17px}
+.shelter-card-actions .ghost{min-height:38px;border-radius:9px;border:1px solid #dce5ef;background:#fff;color:#34475e;font-weight:700;font-size:9px}
+.shelter-card-actions .full-btn{width:auto!important;margin:0!important;display:flex;justify-content:center;align-items:center;gap:6px;min-height:38px}
+.shelter-detail-modal{display:grid;gap:15px}
+.detail-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.detail-kpis>div{padding:12px;border:1px solid #e3eaf2;border-radius:10px;background:#f8fafc}
+.detail-kpis small,.detail-kpis b{display:block}
+.detail-kpis small{font-size:8px;color:#8291a3;text-transform:uppercase;letter-spacing:.08em}
+.detail-kpis b{margin-top:4px;font-size:18px;color:#1c2d43}
+.detail-list{display:grid;gap:9px}
+.detail-list p{display:flex;align-items:center;gap:8px;margin:0;padding:8px 0;border-bottom:1px solid #edf1f5;font-size:10px;color:#4d6075}
+.detail-list p svg{color:#3979b8;flex:none}
+.detail-list>small{font-size:8px;color:#8b99aa}
+
+/* Emergency: intentionally monochrome, no red/blue card combination */
+.emergency-black-card{
+  background:#080b10!important;
+  border:1px solid #1b222d!important;
+  color:#fff!important;
+  box-shadow:0 18px 50px rgba(0,0,0,.2)!important;
+}
+.emergency-black-card .emergency-symbol{
+  background:#12161c!important;color:#fff!important;border:1px solid #2a3038;
+}
+.emergency-black-card h2{color:#fff!important}
+.emergency-black-card p{color:#9ba5b2!important}
+.emergency-black-card .eyebrow{color:#aab4c0!important}
+.emergency-source{display:block;margin-top:8px;color:#707b89;font-size:8px}
+.emergency-buttons a.call-now{
+  background:#fff!important;color:#090b0f!important;border:1px solid #fff!important;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+}
+.emergency-buttons a.call-now strong{font-size:12px}
+.emergency-buttons button{
+  background:#151a21!important;color:#fff!important;border:1px solid #343b45!important;
+}
+.emergency-buttons button:hover{background:#1b2129!important}
+
+/* Only the functional Leaflet map remains; remove the old national outline styling. */
+.india-hero-card,.india-map-svg-wrap{display:none!important}
+
+@media(max-width:900px){
+  .citizen-shelter-layout{grid-template-columns:1fr!important}
+  .citizen-shelter-layout .citizen-map{height:430px!important}
+  .citizen-shelter-layout .map-wrap{height:365px!important}
+  .emergency-grid{grid-template-columns:1fr!important}
+}
+
+/* =========================================================
+   V10 — Citizen public pages: clean directory + India overview
+   ========================================================= */
+.india-nav-label{
+  display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 12px;
+  border:1px solid #d7e1ea;border-radius:10px;background:#f8fafc;color:#17304a;
+  font-size:10px;font-weight:800;letter-spacing:.12em;box-shadow:0 2px 7px rgba(16,35,63,.04)
+}
+.india-map-shell{display:flex;flex-direction:column;height:100%;min-height:520px;background:#fff}
+.india-map-toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 18px;border-bottom:1px solid #edf1f5}
+.india-map-toolbar>div:first-child{display:flex;flex-direction:column;gap:4px}
+.india-map-toolbar b{font-size:11px;letter-spacing:.13em;color:#19334d}
+.india-map-toolbar span{font-size:10px;color:#8293a6}
+.india-map-location{display:flex;align-items:center;gap:8px}
+.india-map-location span{font-size:9px;font-weight:800;letter-spacing:.1em;color:#1769d1;background:#eaf3ff;border:1px solid #d4e5fb;border-radius:20px;padding:6px 9px}
+.india-map-location select{height:34px;border-radius:9px!important;font-size:10px!important;min-width:150px;padding:0 10px!important}
+.india-map-canvas{flex:1;min-height:420px;background:#edf3f7}
+.india-map-canvas .leaflet-container{height:100%;min-height:420px}
+.india-map-footer{display:flex;align-items:center;justify-content:center;gap:18px;padding:9px 12px;border-top:1px solid #edf1f5;font-size:9px;color:#65788e}
+.india-map-footer span{display:flex;align-items:center;gap:5px}
+.map-dot{width:8px;height:8px;border-radius:50%;display:inline-block}.map-dot.critical{background:#d0273b}.map-dot.high{background:#c9820a}.map-dot.moderate{background:#e8c400}.map-dot.calm{background:#128253}
+.india-map-page{padding:0!important;overflow:hidden!important;height:calc(100vh - 165px)!important;min-height:560px}
+.india-map-page .india-map-shell{min-height:100%}
+.india-map-page .india-map-canvas,.india-map-page .india-map-canvas .leaflet-container{min-height:0}
+
+/* Shelter directory — matched to the supplied reference */
+.shelter-directory-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0;border-top:1px solid #edf1f5;border-bottom:1px solid #edf1f5;margin-bottom:16px}
+.shelter-search{width:443px;height:38px;display:flex;align-items:center;gap:9px;border:1px solid #dbe3eb;background:#fff;padding:0 12px;color:#8a9aab}
+.shelter-search input{border:0!important;outline:0;width:100%;height:100%;font-size:12px!important;box-shadow:none!important}
+.shelter-legend{display:flex;align-items:center;gap:12px;font-size:10px;color:#607389}.shelter-legend span{display:flex;align-items:center;gap:5px}.open-dot,.full-dot{width:8px;height:8px;border-radius:50%;display:inline-block}.open-dot{background:#10b981}.full-dot{background:#ff5b66}
+.shelter-directory-list{width:min(887px,100%);display:grid;gap:16px;padding-bottom:24px}
+.directory-shelter-card{padding:0!important;border-radius:15px!important}
+.directory-shelter-top{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:20px 20px 12px}
+.directory-shelter-name{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.directory-shelter-name b{font-size:14px;color:#10243a}.directory-shelter-name em{font-style:normal;background:#f3f5f7;color:#456076;border-radius:14px;padding:4px 8px;font-size:9px;font-weight:700}.directory-status{font-style:normal;border-radius:12px;padding:4px 8px;font-size:9px;font-weight:800}.directory-status.open{background:#dff8ee;color:#0b8b63}.directory-status.full{background:#ffe3e6;color:#ec3e4d}.directory-shelter-top small{display:flex;align-items:center;gap:5px;color:#91a0b0;font-size:10px;margin-top:5px}
+.directory-directions,.directory-disabled{display:flex;align-items:center;justify-content:center;gap:7px;min-width:126px;height:36px;border:0;border-radius:11px;text-decoration:none;font-size:10px;font-weight:800}.directory-directions{background:#1f64ee;color:#fff;box-shadow:0 6px 14px rgba(31,100,238,.16)}.directory-disabled{background:#f2f4f7;color:#8d9aaa}
+.directory-occupancy{padding:0 20px 7px}.directory-occupancy>div:first-child{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;color:#71849a;font-size:10px}.directory-occupancy b{font-weight:500}.directory-occupancy strong{color:#f29b00;font-size:11px}.directory-bar{height:7px;background:#eef1f4;border-radius:99px;overflow:hidden;margin-top:5px}.directory-bar i{display:block;height:100%;border-radius:99px}.directory-bar i.open{background:#f6b500}.directory-bar i.high{background:#0dc46b}.directory-bar i.full{background:#ff3341}
+.directory-tags{display:flex;gap:8px;padding:4px 20px 16px}.directory-tags span{background:#f4f6f8;border-radius:12px;padding:4px 8px;color:#536a80;font-size:9px}
+
+/* Emergency directory — matched to the supplied reference */
+.emergency-directory-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:900px;padding-bottom:30px}
+.emergency-directory-card{padding:20px!important;border-radius:15px!important;min-height:205px}
+.directory-group-title{font-size:10px;font-weight:800;letter-spacing:.13em;color:#63778e;margin-bottom:12px}
+.directory-contact-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:7px 0}.directory-contact-row>div{min-width:0}.directory-contact-row b{display:block;font-size:12px;color:#12283f}.directory-contact-row span{display:block;color:#95a2b2;font-size:9px;margin-top:2px}.directory-contact-row a{flex:none;text-decoration:none;background:#edf5ff;color:#145ee8;padding:8px 10px;border-radius:12px;font-size:12px;font-weight:800}
+
+/* Safety accordion — matched to the supplied reference */
+.safety-accordion-list{width:min(770px,100%);display:grid;gap:14px;padding-bottom:30px}
+.safety-accordion-card{padding:0!important;border-radius:15px!important;overflow:hidden}.safety-accordion-card.is-open{border-left:3px solid #dfe6ec!important}.safety-accordion-card:nth-child(2){border-left:3px solid #13c96a!important}.safety-accordion-card:nth-child(4){border-left:3px solid #a448ff!important}
+.safety-accordion-head{width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px 21px;border:0;background:#fff;color:#142b43;text-align:left;font-size:13px;font-weight:800;cursor:pointer}.safety-accordion-head b{font-size:17px;color:#93a0ae;font-weight:500}.safety-accordion-body{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:18px 26px 21px;border-top:1px solid #edf1f5;background:#fff}
+.safety-guideline{display:flex;gap:12px;align-items:flex-start}.safety-guideline-icon{width:28px;height:28px;display:grid;place-items:center;border-radius:8px;background:#eef5ff;color:#1769d1;flex:none}.safety-guideline:nth-child(3) .safety-guideline-icon{background:#fff1e8;color:#ff7a22}.safety-guideline:nth-child(4) .safety-guideline-icon{background:#e9faf2;color:#10a76b}.safety-guideline b{font-size:11px;color:#142b43;display:block;margin-bottom:3px}.safety-guideline p{margin:0;color:#61758a;font-size:10px;line-height:1.5}
+
+/* Sidebar emergency action — strictly black/white */
+.citizen-side-emergency{background:#fff!important;border:1px solid #dfe5eb!important;color:#111!important;border-radius:11px!important;padding:13px!important}.citizen-side-emergency b{color:#111!important;font-size:10px!important}.citizen-side-emergency span{color:#7a8794!important}.citizen-side-emergency a{background:#111!important;color:#fff!important;border:1px solid #111!important;border-radius:8px!important;font-weight:800!important}.citizen-side-emergency a:hover{background:#fff!important;color:#111!important}
+
+@media(max-width:900px){
+ .india-map-toolbar{align-items:flex-start;flex-direction:column}.india-map-location{width:100%}.india-map-location select{flex:1}.shelter-directory-toolbar{align-items:flex-start;flex-direction:column}.shelter-search{width:100%}.emergency-directory-grid{grid-template-columns:1fr}.safety-accordion-body{grid-template-columns:1fr}.directory-shelter-top{align-items:flex-start;flex-direction:column}.directory-directions,.directory-disabled{width:100%}
+}

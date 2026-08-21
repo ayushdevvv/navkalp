@@ -35,9 +35,26 @@ async function openMeteo(state, district) {
   };
 }
 
+
+async function fetchEmergencyContacts(state, district) {
+  const cfg = getDistrict(state, district);
+  const query = `[out:json][timeout:8];(nwr["amenity"~"^(police|fire_station|hospital)$"]["phone"](around:30000,${cfg.center.lat},${cfg.center.lng});nwr["emergency"="ambulance"]["phone"](around:30000,${cfg.center.lat},${cfg.center.lng}););out center tags;`;
+  const { data } = await withTimeout(axios.post('https://overpass-api.de/api/interpreter', query, {
+    headers: { 'Content-Type': 'text/plain' }
+  }), 10000);
+  const rows = (data?.elements || []).map(x => {
+    const tags = x.tags || {};
+    const phone = String(tags.phone || tags['contact:phone'] || '').trim();
+    const name = tags.name || 'Local emergency service';
+    const category = tags.amenity === 'police' ? 'Police' : tags.amenity === 'fire_station' ? 'Fire & Rescue' : tags.emergency === 'ambulance' ? 'Ambulance' : 'Medical';
+    return phone ? { name, category, phone, state, district, sourceType: 'VERIFIED', sourceName: 'OpenStreetMap', sourceUrl: 'https://www.openstreetmap.org/' } : null;
+  }).filter(Boolean);
+  return rows.filter((x, i, arr) => arr.findIndex(y => y.phone === x.phone) === i).slice(0, 8);
+}
+
 async function refresh(state, district) {
   const k = key(state, district);
-  const previous = cache.get(k) || { alerts: [], weather: null, fetchedAt: null, sources: {} };
+  const previous = cache.get(k) || { alerts: [], weather: null, emergencyContacts: [], fetchedAt: null, sources: {} };
   if (previous.fetchedAt && now() - previous.fetchedAt < TTL) return previous;
 
   const result = { ...previous, fetchedAt: new Date(), sources: { ...previous.sources } };
@@ -50,6 +67,7 @@ async function refresh(state, district) {
       result.sources.sachet = { ok: true, fetchedAt: new Date() };
     }).catch(error => { result.sources.sachet = { ok: false, error: error.message }; }),
     openMeteo(state, district).then(weather => { result.weather = weather; result.sources.weather = { ok: true, fetchedAt: new Date() }; }).catch(error => { result.sources.weather = { ok: false, error: error.message }; }),
+    fetchEmergencyContacts(state, district).then(contacts => { if (contacts.length) result.emergencyContacts = contacts; result.sources.emergencyContacts = { ok: true, fetchedAt: new Date(), count: contacts.length }; }).catch(error => { result.sources.emergencyContacts = { ok: false, error: error.message }; }),
     withTimeout(fetchSources(), 7000).then(pages => {
       const p = pages.find(x => x.sourceName === 'ASDMA Flood Report');
       if (p) {

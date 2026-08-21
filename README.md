@@ -1,6 +1,6 @@
 # FLOODGUARD — District Flood Response & Emergency Coordination Platform
 
-FloodGuard is an existing MERN district emergency-operations application upgraded into a data-rich Assam flood-response demo while preserving its existing navigation, auth, Leaflet, MongoDB, Socket.IO and Groq architecture.
+RahatSetu is an existing MERN district emergency-operations application upgraded into a data-rich Assam flood-response demo while preserving its existing navigation, auth, Leaflet, MongoDB, Socket.IO and Groq architecture.
 
 ## Primary demo
 
@@ -52,7 +52,7 @@ MongoDB cached record → UI
 
 If there is no cache:
 
-FloodGuard demo seed → UI
+RahatSetu demo seed → UI
 
 The dashboard therefore does not collapse into a blank `0 incidents` state just because a public API is unavailable.
 
@@ -70,7 +70,7 @@ This starts the Express/Socket.IO API and Vite frontend together. If you prefer 
 
 ### Backend
 
-Node.js 20+ is recommended. MongoDB may be local or MongoDB Atlas. FloodGuard still starts in populated demo-memory mode if MongoDB is temporarily unavailable.
+Node.js 20+ is recommended. MongoDB may be local or MongoDB Atlas. RahatSetu still starts in populated demo-memory mode if MongoDB is temporarily unavailable.
 
 ```bash
 cd backend
@@ -140,7 +140,7 @@ The seeded operational default is Uttar Pradesh / Lucknow. Assam / Dibrugarh and
 
 ## Honest limitations
 
-- Public government sites can change endpoints, rate-limit requests or become unavailable. FloodGuard caches the last usable data and falls back to labelled demo data.
+- Public government sites can change endpoints, rate-limit requests or become unavailable. RahatSetu caches the last usable data and falls back to labelled demo data.
 - CWC's public forecasting web application is not assumed to expose a stable anonymous JSON endpoint; therefore seeded gauge values are explicitly marked `CACHED`/`DEMO` rather than falsely claiming live CWC telemetry.
 - Direct IMD district warning API integration requires current district object IDs. The adapter is present, but IDs are not guessed.
 - OSM/Overpass and OSRM are public services and can have usage/rate limits; route fallback prevents the UI from breaking.
@@ -176,7 +176,7 @@ The backend now has a populated operational dataset independent of MongoDB avail
 
 ### Backend
 
-Node.js 20+ is recommended. MongoDB may be local or MongoDB Atlas. FloodGuard still starts in populated demo-memory mode if MongoDB is temporarily unavailable. demo dataset
+Node.js 20+ is recommended. MongoDB may be local or MongoDB Atlas. RahatSetu still starts in populated demo-memory mode if MongoDB is temporarily unavailable. demo dataset
 
 The server-side memory dataset contains, for Dibrugarh:
 
@@ -197,7 +197,7 @@ This data is generated in `backend/services/memoryStore.js` and is explicitly la
 
 ### MongoDB behaviour
 
-At startup FloodGuard:
+At startup RahatSetu:
 
 1. Tries MongoDB.
 2. If MongoDB is available, verifies/synchronizes missing demo operational collections from the backend dataset.
@@ -237,7 +237,7 @@ Groq is server-side only. `GROQ_API_KEY` is never bundled into the frontend.
 
 ## Trust / demo posture
 
-FloodGuard intentionally separates `OFFICIAL`, `VERIFIED`, `COMMUNITY`, `CACHED`, `DEMO`, `SIMULATION` and `OPERATOR` records. Seeded records are not labelled as government alerts. Public feeds are cached and can fail without making the command centre unusable.
+RahatSetu intentionally separates `OFFICIAL`, `VERIFIED`, `COMMUNITY`, `CACHED`, `DEMO`, `SIMULATION` and `OPERATOR` records. Seeded records are not labelled as government alerts. Public feeds are cached and can fail without making the command centre unusable.
 
 ## Competition demo access (authentication bypass)
 

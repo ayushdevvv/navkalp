@@ -238,3 +238,15 @@ Groq is server-side only. `GROQ_API_KEY` is never bundled into the frontend.
 ## Trust / demo posture
 
 FloodGuard intentionally separates `OFFICIAL`, `VERIFIED`, `COMMUNITY`, `CACHED`, `DEMO`, `SIMULATION` and `OPERATOR` records. Seeded records are not labelled as government alerts. Public feeds are cached and can fail without making the command centre unusable.
+
+## Competition demo access (authentication bypass)
+
+For the current Smart India Hackathon-style demo build, authentication verification is intentionally disabled. Visitors can enter directly from the public landing page using **Admin Command Centre** or **Citizen Emergency Portal**.
+
+The backend accepts the `X-Demo-Role` header and uses the corresponding seeded demo identity. To restore real JWT verification later, set:
+
+```env
+DEMO_BYPASS_AUTH=false
+```
+
+No production deployment should use the bypass mode.
